@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration & Login</title>
+    <link rel="stylesheet" href="signup.css">
+    <script src="https://kit.fontawesome.com/f7967e2d96.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="from-box">
+            <h1 id="title">Sign Up</h1>
+            <form>
+                <div class="input-group">
+                    <div class="input-field " id="nameField">
+                        <i class="fa-solid fa-user"></i>
+                        <input name="name" type="text" placeholder="Name">
+
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input name="email" type="email" placeholder="Email">
+
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input name="pass" type="password" placeholder="Password">
+
+                    </div>
+                    <p>Forget Password <a href="#"> Click here</a></p>
+
+
+                </div>
+                <div class="btn-field">
+                    <button type="submit" id="signupBtn"> Sign Up</button>
+                    <button type="submit" class="disable" id="signinBtn" onclick={postData()}> Sign in</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- <script>
+        let signupBtn=document.getElementById("signupBtn");
+        let signinBtn=document.getElementById("siginpBtn");
+        let nameField=document.getElementById("nameField");
+        let title=document.getElementById("title");
+
+        signinBtn.onclick=function(){
+            namefield.style.maxHeight="0";
+        }
+    </script> -->
+
+    <script>
+        // let signupBtn=document.getElementById("signupBtn");
+        // signupBtn.onclick=
+
+        async function postview() {
+
+            await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:');
+
+                })
+                .catch((error) => {
+                    alert("Enter Valid Information");
+                });
+
+
+
+            console.log(name.value);
+            console.log(email.value);
+            console.log(pass.value);
+
+        }
+        async function postData() {
+
+            console.log("hello");
+            const url = 'http://localhost:3000/v1/auth/login'; // Replace with your API endpoint URL
+            //    const data = { 
+            //        name: target.name.value,
+            //      email: target.email.value,
+            //      password: target.pass.value,
+            //    };
+            const data = {
+                "email": "saif1@gmail.com",
+                "password": "password1"
+            }
+            await fetch(url, {
+                method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+            // postview();
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

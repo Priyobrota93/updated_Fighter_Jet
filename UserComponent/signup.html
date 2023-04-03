@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration & Login</title>
+    <link rel="stylesheet" href="signup.css">
+    <script src="https://kit.fontawesome.com/f7967e2d96.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="from-box">
+            <h1 id="title">Sign Up</h1>
+            <form>
+                <div class="input-group">
+                    <div class="input-field " id="nameField">
+                        <i class="fa-solid fa-user"></i>
+                        <input name="name" type="text" placeholder="Name">
+
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input name="email" type="email" placeholder="Email">
+
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input name="pass" type="password" placeholder="Password">
+
+                    </div>
+                    <p>Forget Password <a href="#"> Click here</a></p>
+
+
+                </div>
+                <div class="btn-field">
+                    <button type="button" id="signupBtn"> Sign Up</button>
+                    <button type="button" class="disable" id="signinBtn" onclick="loginUser()"> Sign in</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- <script>
+        let signupBtn=document.getElementById("signupBtn");
+        let signinBtn=document.getElementById("siginpBtn");
+        let nameField=document.getElementById("nameField");
+        let title=document.getElementById("title");
+
+        signinBtn.onclick=function(){
+            namefield.style.maxHeight="0";
+        }
+    </script> -->
+
+    <script>
+        function loginUser() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:3000/v1/auth/login");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(
+                JSON.stringify({
+                    email: "fake@example.com",
+                    password: "password1",
+                })
+            );
+            xhttp.onreadystatechange = function () {
+                const objects = JSON.parse(this.responseText);
+                console.log(objects);
+                if (objects?.tokens?.access) {
+                    localStorage.setItem("jwt", objects?.tokens?.access?.token);
+                    localStorage.setItem("jwt-refresh", objects?.tokens?.access?.refresh);
+                    // window.location.href = "./index.html";
+                }
+                else {
+                    alert("Credentials Does Not Match")
+                }
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>

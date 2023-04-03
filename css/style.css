@@ -39,6 +39,7 @@ body{
   min-height: 100%;
   margin: 0;
   overflow: hidden;
+  padding: 0;
 }
 
 .wrapCanvas{

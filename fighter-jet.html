@@ -2,7 +2,7 @@
 
 <head>
 	<title>Fighter Jet</title>
-	<h1></h1>
+	
 	<link rel="stylesheet" href="css/fontawesome_all.css">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -89,30 +89,36 @@
 	</div> -->
 
 	<div id="layers">
+		<!-- <div class="layer"></div>
 		<div class="layer"></div>
 		<div class="layer"></div>
 		<div class="layer"></div>
-		<div class="layer"></div>
-		<div class="layer"></div>
-		<div class="container">
-			<button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"><i class="fa fa-pause fa-2x"></i></button>
-			<div class="row p-0 bg-light">
-				<button id="pause" class="btn btn-light w-20 border border-primary d-none" onclick="pauseGame()"><i class="fa fa-pause fa-2x"></i></button>
-				<div class="col-md-4 d-flex justify-content-center">
-					<h2 id="level" class="d-inline"></h2>	
+		<div class="layer"></div> -->
+		<div class="mx-auto vw-100 ">
+			<div class="row  w-100 m-0 bg-light px-5">
+				<!-- <button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"><i class="fa fa-pause fa-2x"></i></button> -->
+				<button id="pause" class=" ml-auto btn btn-light d-none btn-outline-success" onclick="pauseGame()"><i class="fa fa-pause fa-2x"></i></button>
+				<div class=" d-flex justify-content-center">
+					<h3 class="d-inline">Name:</h3>	
 				</div>
-				<div class="col-md-4 d-flex justify-content-center">
-						<h2 class="d-inline ml-auto">Score: &nbsp;</h2>
-						<h2 class="d-inline mr-auto" id="score">
+				<div class="col-md-4 p-0 d-flex justify-content-center">
+					<h3 id="level" class="d-inline"></h3>	
 				</div>
-				<div class="col-md-4 d-flex justify-content-center">
-						<img src="images/lifeGone.png" alt="" id="life1" class="" width="50" height="50">
-						<img src="images/lifeGone.png" alt="" id="life2" class="" width="50" height="50">
-						<img src="images/lifeGone.png" alt="" id="life3" class="" width="50" height="50">
+				<div class="col-md-4 p-0 d-flex justify-content-center">
+						<h3 class="d-inline ml-auto">Score: &nbsp;</h3>
+						<h3 class="d-inline mr-auto" id="score"></h3>
 				</div>
+				<div class=" d-flex justify-content-center">
+						<img src="images/lifeGone.png" alt="" id="life1" class="" width="30" height="50">
+						<img src="images/lifeGone.png" alt="" id="life2" class="" width="30" height="50">
+						<img src="images/lifeGone.png" alt="" id="life3" class="" width="30" height="50">
+				</div>
+				<button class="ml-auto font-weight-bold" >Logout</button>
+				
 			</div>
 		</div>
 		<div class="row p-0 m-0">
+			
 			<div class='wrapCanvas col d-flex justify-content-center w-100'>
 				<!-- <canvas id='canvasBg' width='1600' height='500'></canvas> -->
 				<!-- <img class="hidden" id="goofyPic" src="andyGoofy.gif" alt="Goofy pic of me" />
@@ -147,6 +153,7 @@
 				 style="height:400px;width:600px;opacity: 0.6;"></img> -->
 				<img src="images/paused.jpg" style="height:400px;width:600px;opacity: 0.6;"></img>
 				<div id="menu_buttons" class="row bg-info border mx-0" style="position:absolute;">
+					
 					<div class="col-sm-4">
 						<button id="resume" class="btn btn-danger menuButton" onclick="resumeGame()">Resume Game</button>
 					</div>
@@ -195,6 +202,7 @@
 	<script src="fighterController.js"></script>
 	<script src='Model/enemyBullet.js'></script>
 	<script src="Model/enemyExplosion.js"></script>
+	
 
 </body>
 

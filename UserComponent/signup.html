@@ -18,17 +18,17 @@
                 <div class="input-group">
                     <div class="input-field " id="nameField">
                         <i class="fa-solid fa-user"></i>
-                        <input name="name" type="text" placeholder="Name">
+                        <input id="name" type="text" placeholder="Name">
 
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-envelope"></i>
-                        <input name="email" type="email" placeholder="Email">
+                        <input id="email" type="email" placeholder="Email">
 
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-lock"></i>
-                        <input name="pass" type="password" placeholder="Password">
+                        <input id="pass" type="password" placeholder="Password">
 
                     </div>
                     <p>Forget Password <a href="#"> Click here</a></p>
@@ -50,10 +50,11 @@
         let signinBtn = document.getElementById("signinBtn");
         let nameField = document.getElementById("nameField");
         let title = document.getElementById("title");
-        let pChange = document.getElementById("pChange");
+        // let pChange = document.getElementById("pChange");
         // var anchor = document.createElement('a');
         // anchor.setAttribute('href', '#');
         // anchor.innerHTML = 'Click me';
+        
 
         signupBtn.onclick = function () {
             nameField.style.maxHeight = "60px";
@@ -64,17 +65,20 @@
             const xhttp = new XMLHttpRequest();
             xhttp.open("POST", "http://localhost:3000/v1/auth/register");
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            var x = document.getElementById("name").value;
+            var y = document.getElementById("email").value;
+            var z = document.getElementById("pass").value;
             xhttp.send(
                 JSON.stringify({
-                name:  "saif9",
-                email: "saif10@gmail.com",
-                password: "password1",
+                name:  x,
+                email: y,
+                password: z,
                 })
                
             );
             xhttp.onreadystatechange = function () {
                 const objects = JSON.parse(this.responseText);
-                console.log(objects);
+                 console.log(objects);
                 if (objects?.tokens?.access) {
                     localStorage.setItem("jwt", objects?.tokens?.access?.token);
                     localStorage.setItem("jwt-refresh", objects?.tokens?.access?.refresh);
@@ -106,10 +110,12 @@
             const xhttp = new XMLHttpRequest();
             xhttp.open("POST", "http://localhost:3000/v1/auth/login");
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            var y = document.getElementById("email").value;
+            var z = document.getElementById("pass").value;
             xhttp.send(
                 JSON.stringify({
-                    email: "saif10@gmail.com",
-                    password: "password1",
+                    email: y,
+                    password: z,
                 })
             );
             xhttp.onreadystatechange = function () {

@@ -14,7 +14,7 @@
     position: relative;
 
 }
-.from-box{
+.form-box{
     width: 90%;;
     max-width:450px;
     position:absolute;
@@ -35,13 +35,13 @@
     /* justify-content: center; */
     
 }
-.from-box h1{
+.form-box h1{
     font-size: 30px;
     margin-bottom: 60px;
     color:#3c00a0;
     position: relative;
 }
-.from-box h1::after{
+.form-box h1::after{
     content: '';
     width: 30px;
     height: 4px;
@@ -68,22 +68,23 @@ input{
     width:100%;
     background: transparent;
     border: 0;
-    outline: none;
-    padding:15px;
+    outline: 0;
+    padding: 15px;
 }
 input-field i{
     margin-left:15px;
     color:#999;
+    
 }
 form p{
     text-align: left;
-    font-size: 13px;
+    font-size: 20px;
     padding-bottom: 2px;
 
 }
 form p a{
     text-decoration: none;
-    color:#3c00a0;
+    color:#ff0303;
 }
 .btn-field{
     width: 100%;
@@ -92,12 +93,14 @@ form p a{
 }
 .btn-field button{
     flex-basis: 48%;
+    /* font-size: large; */
+    font-weight: bold;
     background: #3c00a0;
     color: #fff;
     height: 40px;
     border-radius: 20px;
     border: 0;
-    outline: none;
+    outline: 0;
     cursor: pointer;
     transition: backgroud 1s;
 
@@ -110,4 +113,6 @@ form p a{
 .btn-field button.disable{
     background: #eaeaea;
     color:#0a0a0a;
+
+    
 }

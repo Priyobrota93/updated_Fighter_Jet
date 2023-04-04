@@ -12,11 +12,11 @@
 
 <body>
     <div class="container">
-        <div class="from-box">
+        <div class="form-box">
             <h1 id="title">Sign Up</h1>
             <form>
                 <div class="input-group">
-                    <div class="input-field " id="nameField">
+                    <div class="input-field" id="nameField">
                         <i class="fa-solid fa-user"></i>
                         <input name="name" type="text" placeholder="Name">
 
@@ -31,30 +31,62 @@
                         <input name="pass" type="password" placeholder="Password">
 
                     </div>
-                    <p>Forget Password <a href="#"> Click here</a></p>
+                    <p id="pChange"><a href="#"> Forgotten password?</a></p>
 
 
                 </div>
                 <div class="btn-field">
-                    <button type="submit" id="signupBtn"> Sign Up</button>
-                    <button type="submit" class="disable" id="signinBtn" onclick={postData()}> Sign in</button>
+                    <button type="button" id="signupBtn"  > Sign Up</button>
+                    <button type="button"  id="signinBtn" class="disable" > Sign In</button>
                 </div>
             </form>
         </div>
 
     </div>
+
+    <script>
+        let signupBtn = document.getElementById("signupBtn");
+        let signinBtn = document.getElementById("signinBtn");
+        let nameField = document.getElementById("nameField");
+        let title = document.getElementById("title");
+        let pChange = document.getElementById("pChange");
+        // var anchor = document.createElement('a');
+        // anchor.setAttribute('href', '#');
+        // anchor.innerHTML = 'Click me';
+
+        signupBtn.onclick = function(){
+            nameField.style.maxHeight="60px";
+            title.innerHTML="Sign Up";
+            signupBtn.classList.remove("disable");
+            signinBtn.classList.add("disable");
+        }
+        signinBtn.onclick = function(){
+            nameField.style.maxHeight="0";
+            title.innerHTML="Sign In";
+            // pChange.appendChild(anchor);
+            signupBtn.classList.add("disable");
+            signinBtn.classList.remove("disable");
+        }
+
+
+
+       
+
+
+    </script>
+
     <!-- <script>
         let signupBtn=document.getElementById("signupBtn");
         let signinBtn=document.getElementById("siginpBtn");
         let nameField=document.getElementById("nameField");
         let title=document.getElementById("title");
 
-        signinBtn.onclick=function(){
-            namefield.style.maxHeight="0";
+        signinBtn.onclick = function(){
+            nameField.style.maxHeight="0";
         }
     </script> -->
 
-    <script>
+    <!-- <script>
         // let signupBtn=document.getElementById("signupBtn");
         // signupBtn.onclick=
 
@@ -108,7 +140,7 @@
 
         }
 
-    </script>
+    </script> -->
 
 
 </body>

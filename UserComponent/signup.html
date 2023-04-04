@@ -36,32 +36,142 @@
 
                 </div>
                 <div class="btn-field">
-                    <button type="button" id="signupBtn"> Sign Up</button>
-                    <button type="button" class="disable" id="signinBtn" onclick="loginUser()"> Sign in</button>
+                    <button type="button" id="signupBtn" > Sign Up</button>
+                    <button type="button" class="disable" id="signinBtn" " > Sign in</button>
                 </div>
             </form>
         </div>
 
     </div>
-    <!-- <script>
-        let signupBtn=document.getElementById("signupBtn");
-        let signinBtn=document.getElementById("siginpBtn");
-        let nameField=document.getElementById("nameField");
-        let title=document.getElementById("title");
 
-        signinBtn.onclick=function(){
-            namefield.style.maxHeight="0";
-        }
-    </script> -->
 
     <script>
+        let signupBtn = document.getElementById("signupBtn");
+        let signinBtn = document.getElementById("signinBtn");
+        let nameField = document.getElementById("nameField");
+        let title = document.getElementById("title");
+        let pChange = document.getElementById("pChange");
+        // var anchor = document.createElement('a');
+        // anchor.setAttribute('href', '#');
+        // anchor.innerHTML = 'Click me';
+
+        signupBtn.onclick = function () {
+            nameField.style.maxHeight = "60px";
+            title.innerHTML = "Sign Up";
+            signupBtn.classList.remove("disable");
+            signinBtn.classList.add("disable");
+            
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:3000/v1/auth/register");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(
+                JSON.stringify({
+                name:  "saif9",
+                email: "saif10@gmail.com",
+                password: "password1",
+                })
+               
+            );
+            xhttp.onreadystatechange = function () {
+                const objects = JSON.parse(this.responseText);
+                console.log(objects);
+                if (objects?.tokens?.access) {
+                    localStorage.setItem("jwt", objects?.tokens?.access?.token);
+                    localStorage.setItem("jwt-refresh", objects?.tokens?.access?.refresh);
+                    //  window.location.href = {signinBtn};
+                    
+            nameField.style.maxHeight = "0";
+            title.innerHTML = "Sign In";
+            // pChange.appendChild(anchor);
+            signupBtn.classList.add("disable");
+            signinBtn.classList.remove("disable");
+             
+                }
+                else {
+                    alert("Credentials Does Not Match");
+                }
+            }
+         
+        
+            
+
+        }
+        signinBtn.onclick = function () {
+            nameField.style.maxHeight = "0";
+            title.innerHTML = "Sign In";
+            
+            signupBtn.classList.add("disable");
+            signinBtn.classList.remove("disable");
+            
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:3000/v1/auth/login");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(
+                JSON.stringify({
+                    email: "saif10@gmail.com",
+                    password: "password1",
+                })
+            );
+            xhttp.onreadystatechange = function () {
+                const objects = JSON.parse(this.responseText);
+                console.log(objects);
+                if (objects?.tokens?.access) {
+                    localStorage.setItem("jwt", objects?.tokens?.access?.token);
+                    localStorage.setItem("jwt-refresh", objects?.tokens?.access?.refresh);
+                     window.location.href = "../fighter-jet.html";
+                }
+                else {
+                    alert("Credentials Does Not Match")
+                }
+            }
+        
+
+
+        }
+
+    </script>
+    <!-- <script>
+        function signupUser() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:3000/v1/auth/register");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(
+                JSON.stringify({
+                "name":  name.value,
+                "email": email.value,
+                "password": pass.value
+                })
+               
+            );
+            xhttp.onreadystatechange = function () {
+                const objects = JSON.parse(this.responseText);
+                console.log(objects);
+                if (objects?.tokens?.access) {
+                    localStorage.setItem("jwt", objects?.tokens?.access?.token);
+                    localStorage.setItem("jwt-refresh", objects?.tokens?.access?.refresh);
+                     window.location.href = "./signin.html";
+                }
+                else {
+                    alert("Credentials Does Not Match");
+                }
+            }
+            console.log(name.value);
+            console.log(email.value);
+            console.log(pass.value);
+        }
+
+    </script> -->
+
+
+
+    <!-- <script>
         function loginUser() {
             const xhttp = new XMLHttpRequest();
             xhttp.open("POST", "http://localhost:3000/v1/auth/login");
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xhttp.send(
                 JSON.stringify({
-                    email: "fake@example.com",
+                    email: "saif1@gmail.com",
                     password: "password1",
                 })
             );
@@ -79,7 +189,7 @@
             }
         }
 
-    </script>
+    </script> -->
 
 
 </body>

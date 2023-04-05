@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration & Login</title>
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="./signup-signin.css">
     <script src="https://kit.fontawesome.com/f7967e2d96.js" crossorigin="anonymous"></script>
 </head>
 
@@ -31,7 +31,7 @@
                         <input id="pass" type="password" placeholder="Password">
 
                     </div>
-                    <p>Forget Password <a href="#"> Click here</a></p>
+                    <p><a href="#">Forgotten password?</a></p>
 
 
                 </div>
@@ -83,6 +83,7 @@
                     localStorage.setItem("jwt", objects?.tokens?.access?.token);
                     localStorage.setItem("jwt-refresh", objects?.tokens?.access?.refresh);
                     //  window.location.href = {signinBtn};
+                    window.location.href = "../fighter-jet.html";
                     
             nameField.style.maxHeight = "0";
             title.innerHTML = "Sign In";
@@ -136,66 +137,7 @@
         }
 
     </script>
-    <!-- <script>
-        function signupUser() {
-            const xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "http://localhost:3000/v1/auth/register");
-            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhttp.send(
-                JSON.stringify({
-                "name":  name.value,
-                "email": email.value,
-                "password": pass.value
-                })
-               
-            );
-            xhttp.onreadystatechange = function () {
-                const objects = JSON.parse(this.responseText);
-                console.log(objects);
-                if (objects?.tokens?.access) {
-                    localStorage.setItem("jwt", objects?.tokens?.access?.token);
-                    localStorage.setItem("jwt-refresh", objects?.tokens?.access?.refresh);
-                     window.location.href = "./signin.html";
-                }
-                else {
-                    alert("Credentials Does Not Match");
-                }
-            }
-            console.log(name.value);
-            console.log(email.value);
-            console.log(pass.value);
-        }
-
-    </script> -->
-
-
-
-    <!-- <script>
-        function loginUser() {
-            const xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "http://localhost:3000/v1/auth/login");
-            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhttp.send(
-                JSON.stringify({
-                    email: "saif1@gmail.com",
-                    password: "password1",
-                })
-            );
-            xhttp.onreadystatechange = function () {
-                const objects = JSON.parse(this.responseText);
-                console.log(objects);
-                if (objects?.tokens?.access) {
-                    localStorage.setItem("jwt", objects?.tokens?.access?.token);
-                    localStorage.setItem("jwt-refresh", objects?.tokens?.access?.refresh);
-                    // window.location.href = "./index.html";
-                }
-                else {
-                    alert("Credentials Does Not Match")
-                }
-            }
-        }
-
-    </script> -->
+     
 
 
 </body>

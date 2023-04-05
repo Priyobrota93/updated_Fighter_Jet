@@ -77,13 +77,13 @@ input-field i{
 }
 form p{
     text-align: left;
-    font-size: 13px;
+    font-size: 18px;
     padding-bottom: 2px;
 
 }
 form p a{
     text-decoration: none;
-    color:#3c00a0;
+    color:#f60e02;
 }
 .btn-field{
     width: 100%;

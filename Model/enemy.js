@@ -68,7 +68,7 @@ Enemy.prototype.checkShooting = function () {
   console.log(this.EnemyWarOptions.fireBtn, this.EnemyWarOptions.isShooting);
   // console.log(23);
   if (this.EnemyWarOptions.fireBtn && this.EnemyWarOptions.isShooting) {
-    console.log(22);
+    // console.log(22);
     this.EnemyWarOptions.bullets[this.EnemyWarOptions.currentBullet++]?.fire(
       this.enemyOptions.drawX + 100, // draw fire drawX=200+100
       this.enemyOptions.drawY + 30 // draw fire drawY=300+30
@@ -87,11 +87,11 @@ Enemy.prototype.EnemydrawAllBullets = function () {
   console.log(8);
   console.log(this.EnemyWarOptions?.bullets);
   for (var i = 0; i < this.EnemyWarOptions.bullets.length; i++) {
-    console.log(9);
+    // console.log(9);
     console.log(this.EnemyWarOptions.bullets[i]);
     if (this.EnemyWarOptions.bullets[i].enemyBulletoptions.drawX >= 0)
       this.EnemyWarOptions.bullets[i].drawBulletCanvas();
-    console.log(6);
+    // console.log(6);
     if (this.EnemyWarOptions.bullets[i].enemyBulletoptions.explosion.hasHit)
       this.EnemyWarOptions.bullets[
         i

@@ -4,7 +4,7 @@ var isFirstLoaded = 1;
 var drawInterval;
 var requestAnimFrame =
   window.requestAnimationFrame || window.webkitRequestAnimationFrame;
-var level = new Level();
+var level = new Level1();
 var canvas = {
   gameWidth: window.innerWidth,
   gameHeight: window.innerHeight,
@@ -60,7 +60,9 @@ var canvas = {
       this.enemies[index].speed = level.getCurrentLevel().speed;
     }
     console.log("Update level");
-    $("#level").text("Level " + level.currentLevel);
+    $("#level").text("Level- " + level.currentLevel);
+    // const finalLevel = level;
+    // console(finalLevel);
   },
   getCanvasCtx: function (id) {
     return document.getElementById(id).getContext("2d");
@@ -148,7 +150,7 @@ var canvas = {
     );
   },
   clear: function (ctx) {
-    ctx.clearRect(0, 0, 1600, 500);
+    ctx.clearRect(0, 0, 1600, 600);
   },
 
   drawbackground: function () {
@@ -199,7 +201,7 @@ var canvas = {
 
 function removeBullet() {
   for (let bullet of fighterJet.jetWarOptions.bullets) {
-    bullet.options.drawX = 99999;
+    bullet.options.drawX = 0;
   }
 }
 

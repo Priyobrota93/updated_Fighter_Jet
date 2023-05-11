@@ -65,37 +65,45 @@
             const xhttp = new XMLHttpRequest();
             xhttp.open("POST", "http://localhost:3000/v1/auth/register");
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            var x = document.getElementById("name").value;
-            var y = document.getElementById("email").value;
-            var z = document.getElementById("pass").value;
+            var name_value = document.getElementById("name").value;
+            var email_value = document.getElementById("email").value;
+            var pass_value = document.getElementById("pass").value;
             xhttp.send(
                 JSON.stringify({
-                name:  x,
-                email: y,
-                password: z,
+                name:  name_value,
+                email: email_value,
+                password: pass_value,
                 })
                
             );
             xhttp.onreadystatechange = function () {
-                const objects = JSON.parse(this.responseText);
-                 console.log(objects);
-                if (objects?.tokens?.access) {
+                 const objects = JSON.parse(this.responseText);
+                 console.log("objects");
+                 if (objects?.tokens?.access) {
+                    console.log("token field");
                     localStorage.setItem("jwt", objects?.tokens?.access?.token);
-                    localStorage.setItem("jwt-refresh", objects?.tokens?.access?.refresh);
-                    //  window.location.href = {signinBtn};
+                    localStorage.setItem("jwt-refresh", objects?.tokens?.refresh?.token);
+                    localStorage.setItem("userData", objects.user.id);
+                    localStorage.setItem("Name", objects.user.name);
+                    const userData = localStorage.getItem("userData");
+                    console.log(userData);
+                    // const Name = localStorage.getItem(" Name");
+            //         //  window.location.href = {signinBtn};
+                    
                     window.location.href = "../fighter-jet.html";
                     
-            nameField.style.maxHeight = "0";
-            title.innerHTML = "Sign In";
-            // pChange.appendChild(anchor);
-            signupBtn.classList.add("disable");
-            signinBtn.classList.remove("disable");
-             
-                }
+                    
+            //         nameField.style.maxHeight = "0";
+            //         title.innerHTML = "Sign In";
+            //         // pChange.appendChild(anchor);
+            //         signupBtn.classList.add("disable");
+            //         signinBtn.classList.remove("disable");
+                    
+                 }
                 else {
                     alert("Credentials Does Not Match");
                 }
-            }
+             }
          
         
             
@@ -111,21 +119,29 @@
             const xhttp = new XMLHttpRequest();
             xhttp.open("POST", "http://localhost:3000/v1/auth/login");
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            var y = document.getElementById("email").value;
-            var z = document.getElementById("pass").value;
+            var email_value = document.getElementById("email").value;
+            var pass_value = document.getElementById("pass").value;
             xhttp.send(
                 JSON.stringify({
-                    email: y,
-                    password: z,
+                    email: email_value,
+                    password: pass_value,
                 })
             );
             xhttp.onreadystatechange = function () {
                 const objects = JSON.parse(this.responseText);
-                console.log(objects);
+                // console.log(objects);
                 if (objects?.tokens?.access) {
                     localStorage.setItem("jwt", objects?.tokens?.access?.token);
-                    localStorage.setItem("jwt-refresh", objects?.tokens?.access?.refresh);
-                     window.location.href = "../fighter-jet.html";
+                    localStorage.setItem("jwt-refresh", objects?.tokens?.refresh?.token);
+                    localStorage.setItem("userData", objects.user.id);
+                    localStorage.setItem("Name", objects.user.name);
+                    const userData = localStorage.getItem("userData");
+                    console.log(userData);
+                     const Name = localStorage.getItem("Name");
+                    // console.log(Name);
+                     
+                    window.location.href = "../fighter-jet.html";
+                    
                 }
                 else {
                     alert("Credentials Does Not Match")

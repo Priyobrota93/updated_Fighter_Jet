@@ -34,7 +34,7 @@ enemyBullet.prototype.recycleBullet = function () {
 };
 
 enemyBullet.prototype.fire = function (drawX, drawY) {
-  console.log(1);
+  // console.log(1);
   //fire draw when shooting
   this.enemyBulletoptions.drawX = drawX;
   this.enemyBulletoptions.drawY = drawY;

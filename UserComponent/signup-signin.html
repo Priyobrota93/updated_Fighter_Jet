@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration & Login</title>
+    <link rel="stylesheet" href="./signup-signin.css">
+    <script src="https://kit.fontawesome.com/f7967e2d96.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="from-box">
+            <h1 id="title">Sign Up</h1>
+            <form>
+                <div class="input-group">
+                    <div class="input-field " id="nameField">
+                        <i class="fa-solid fa-user"></i>
+                        <input id="name" type="text" placeholder="Name">
+
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input id="email" type="email" placeholder="Email">
+
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input id="pass" type="password" placeholder="Password">
+
+                    </div>
+                    <p><a href="#">Forgotten password?</a></p>
+
+
+                </div>
+                <div class="btn-field">
+                    <button type="button" id="signupBtn" > Sign Up</button>
+                    <button type="button" class="disable" id="signinBtn" " > Sign in</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+    <script>
+        let signupBtn = document.getElementById("signupBtn");
+        let signinBtn = document.getElementById("signinBtn");
+        let nameField = document.getElementById("nameField");
+        let title = document.getElementById("title");
+        // let pChange = document.getElementById("pChange");
+        // var anchor = document.createElement('a');
+        // anchor.setAttribute('href', '#');
+        // anchor.innerHTML = 'Click me';
+        
+
+        signupBtn.onclick = function () {
+            nameField.style.maxHeight = "60px";
+            title.innerHTML = "Sign Up";
+            signupBtn.classList.remove("disable");
+            signinBtn.classList.add("disable");
+            
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:3000/v1/auth/register");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            var name_value = document.getElementById("name").value;
+            var email_value = document.getElementById("email").value;
+            var pass_value = document.getElementById("pass").value;
+            xhttp.send(
+                JSON.stringify({
+                name:  name_value,
+                email: email_value,
+                password: pass_value,
+                })
+               
+            );
+            xhttp.onreadystatechange = function () {
+                 const objects = JSON.parse(this.responseText);
+                 console.log("objects");
+                 if (objects?.tokens?.access) {
+                    console.log("token field");
+                    localStorage.setItem("jwt", objects?.tokens?.access?.token);
+                    localStorage.setItem("jwt-refresh", objects?.tokens?.refresh?.token);
+                    localStorage.setItem("userData", objects.user.id);
+                    localStorage.setItem("Name", objects.user.name);
+                    const userData = localStorage.getItem("userData");
+                    console.log(userData);
+                    // const Name = localStorage.getItem(" Name");
+            //         //  window.location.href = {signinBtn};
+                    
+                    window.location.href = "../fighter-jet.html";
+                    
+                    
+            //         nameField.style.maxHeight = "0";
+            //         title.innerHTML = "Sign In";
+            //         // pChange.appendChild(anchor);
+            //         signupBtn.classList.add("disable");
+            //         signinBtn.classList.remove("disable");
+                    
+                 }
+                else {
+                    alert("Credentials Does Not Match");
+                }
+             }
+         
+        
+            
+
+        }
+        signinBtn.onclick = function () {
+            nameField.style.maxHeight = "0";
+            title.innerHTML = "Sign In";
+            
+            signupBtn.classList.add("disable");
+            signinBtn.classList.remove("disable");
+            
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:3000/v1/auth/login");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            var email_value = document.getElementById("email").value;
+            var pass_value = document.getElementById("pass").value;
+            xhttp.send(
+                JSON.stringify({
+                    email: email_value,
+                    password: pass_value,
+                })
+            );
+            xhttp.onreadystatechange = function () {
+                const objects = JSON.parse(this.responseText);
+                // console.log(objects);
+                if (objects?.tokens?.access) {
+                    localStorage.setItem("jwt", objects?.tokens?.access?.token);
+                    localStorage.setItem("jwt-refresh", objects?.tokens?.refresh?.token);
+                    localStorage.setItem("userData", objects.user.id);
+                    localStorage.setItem("Name", objects.user.name);
+                    const userData = localStorage.getItem("userData");
+                    console.log(userData);
+                     const Name = localStorage.getItem("Name");
+                    // console.log(Name);
+                     
+                    window.location.href = "../fighter-jet.html";
+                    
+                }
+                else {
+                    alert("Credentials Does Not Match")
+                }
+            }
+        
+
+
+        }
+
+    </script>
+     
+
+
+</body>
+
+</html>

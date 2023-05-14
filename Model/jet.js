@@ -148,21 +148,69 @@ Jet.prototype.checkHitWall = function () {
 };
 
 Jet.prototype.checkHitEnemy = function () {
+  const name = localStorage.getItem("Name");
+  const nameElement = document.getElementById("name");
+  nameElement.textContent = name.toUpperCase();
   for (var i = 0; i < canvas.enemies.length; i++) {
+    console.log("value of canvas.enemies.length here:", canvas.enemies.length);
+    console.log("value of i here:", i);
+    console.log("value of canvas.enemies[i] here:", canvas.enemies[i]);
     if (detectCollision(this, canvas.enemies[i])) {
       document.getElementById("collideEnemy").cloneNode(true).play();
       // debugger;
       this.life--;
+      console.log("value of this.life here:", this.life);
+
       this.showLife();
       // debugger;
       if (this.life <= 0) {
         document.getElementById("gameOver").cloneNode(true).play();
+        console.log("gameOver");
+        const finalScore = fighterJet.score.score;
+        console.log(finalScore);
+        const finalLevel = level.currentLevel;
+        console.log(finalLevel);
+        const xhttp = new XMLHttpRequest();
+        const tokens = localStorage.getItem("jwt");
+        console.log(tokens);
+
+        xhttp.open("POST", "http://localhost:3000/v1/data/achievement", true);
+        xhttp.setRequestHeader("Authorization", "Bearer " + tokens);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+
+        xhttp.send(
+          JSON.stringify({
+            user: localStorage.getItem("userData"),
+            name: localStorage.getItem("Name"),
+            maximumScore: finalScore,
+            level: finalLevel,
+          })
+        );
+        console.log("text");
+
+        // xhttp.open("GET", "http://localhost:3000/v1/data/achievement");
+        // xhttp.send();
+        // console.log("t");
+        // onreadystatechange = function () {
+        //   if (xhttp.readyState === XMLHttpRequest.DONE) {
+        //     const final_score = JSON.parse(xhttp.responseText);
+        //     console.log(final_score);
+        //   }
+        // };
         $("#resume")
           .text("Your Score: " + fighterJet.score.score)
           .attr("disabled", "disabled");
-        removeBullet();
+
+        // removeBullet();
         pauseGame();
+
+        // this.life = 0;
+        // break;
+        // if (this.life == 0) {
+        //   console.log("value is 0 here");
+        // }
       }
+
       this.Jetoptions.explosion.Explosionoptions.drawX =
         canvas.enemies[i].enemyOptions.drawX +
         this.Jetoptions.explosion.Explosionoptions.width / 2;
@@ -171,8 +219,8 @@ Jet.prototype.checkHitEnemy = function () {
         this.Jetoptions.explosion.Explosionoptions.height / 3;
       this.Jetoptions.explosion.hasHit = true;
       this.Jetoptions.explosion.drawExplosionCanvas();
-      // $('#collideEnemy').play();
-      //this.recycleBullet();
+      // $("#collideEnemy").play();
+      // this.recycleBullet();
       canvas.enemies[i].recycleEnemy();
     }
   }

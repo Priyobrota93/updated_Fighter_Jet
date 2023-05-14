@@ -5,8 +5,10 @@ var fighterJet = new Jet();
 var enemyJet = new Enemy();
 
 function pauseGame() {
+  console.log("Entering Pause game method");
   canvas.stopPlaying();
   $("#afterPause").fadeIn(1000);
+
   //$("#afterPause").removeClass('d-none');
   //afterPause
 }
@@ -41,7 +43,7 @@ function menu() {
   restart();
   canvas.stopPlaying();
   //pauseGame();
-  $("#afterPause").fadeOut(100);
+  $("#afterPause").fadeOut(1000);
   $("#startGame").fadeIn(1000);
   //play();
 }

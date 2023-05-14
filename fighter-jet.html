@@ -94,12 +94,15 @@
 		<div class="layer"></div>
 		<div class="layer"></div>
 		<div class="layer"></div> -->
-		<div class="mx-auto vw-100 ">
+		<div class="  mx-auto vw-100 ">
+			<button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"><i class="fa-sharp fa-solid fa-pause"></i></button>
 			<div class="row  w-100 m-0 bg-light px-5">
-				<!-- <button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"><i class="fa fa-pause fa-2x"></i></button> -->
-				<button id="pause" class=" ml-auto btn btn-light d-none btn-outline-success" onclick="pauseGame()"><i class="fa fa-pause fa-2x"></i></button>
+				<button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"><i class="fa-sharp fa-solid fa-pause"></i></button>
+				<!-- <button id="pause" class="btn btn-light w-20 border border-primary d-none" onclick="pauseGame()"><i class="fa-solid fa-pause"></i></button> -->
+				<!-- <button id="pause" class=" ml-auto btn btn-light d-none btn-outline-success" onclick="pauseGame()"><i class="fa-sharp fa-solid fa-pause"></i></button> -->
 				<div class=" d-flex justify-content-center">
-					<h3 class="d-inline">Name:</h3>	
+					<h3 class="d-inline">Name:&nbsp</h3>
+					<h3 id="name" class="d-inline"></h3>	
 				</div>
 				<div class="col-md-4 p-0 d-flex justify-content-center">
 					<h3 id="level" class="d-inline"></h3>	
@@ -113,7 +116,7 @@
 						<img src="images/lifeGone.png" alt="" id="life2" class="" width="30" height="50">
 						<img src="images/lifeGone.png" alt="" id="life3" class="" width="30" height="50">
 				</div>
-				<button class="ml-auto font-weight-bold" >Logout</button>
+				<button id="logOutBtn" class="ml-auto font-weight-bold"  >Logout</button>
 				
 			</div>
 		</div>
@@ -139,7 +142,7 @@
 						<button id="showHighScroreButton" class="btn btn-primary menuButton" onclick="">High Score</button>
 					</div>
 					<div class="col-sm-4">
-						<button id="showLevelButton" class="btn btn-success menuButton" onclick="">Settings</button>
+						<button id="showSettingsButton" class="btn btn-success menuButton" onclick="">Settings</button>
 					</div>
 				</div>
 
@@ -176,13 +179,69 @@
 				</p>
 			</div>
 		</div>
-	</div>
-
+	<!-- </div> -->
+    
 
 	<!-- 
 	</div>
 	</div> -->
+	<!-- <script>
+		// Get the name from local storage
+		const name = localStorage.getItem('name');
+		
+		// Update the content of the span element with the name
+		document.getElementById('name').textContent = name;
+	  </script> -->
+	<script>
+		const token = localStorage.getItem("jwt");
+        if (!token) {
+			console.log("object");
+			window.location.href = "./UserComponent/signup-signin.html";
+         }
+		
+		let logOutBtn = document.getElementById("logOutBtn");
+		let tokensToRemove = ["jwt", "jwt-refresh"];
+		
+		logOutBtn.onclick = function () {
+			console.log("test");
+            for ( removeToken of tokensToRemove) {
+			localStorage.removeItem(removeToken);
+			// setAuthenticationToken(false);
+			// clearTimeout(token.timer);
+			// console.log(token.timer);
+		}
+		
+			
+			 window.location.href = "./UserComponent/signup-signin.html";
+			// setAuthenticationToken(false);
 
+
+            
+                // const objects = JSON.parse(this.responseText);
+                //  console.log(objects);
+                // if (objects?.tokens?.access) {
+                //     localStorage.setItem("jwt", objects?.tokens?.access?.token);
+                //     localStorage.setItem("jwt-refresh", objects?.tokens?.refresh?.token);
+                //     //  window.location.href = {signinBtn};
+                //     window.location.href = "../fighter-jet.html";
+                    
+                //     nameField.style.maxHeight = "0";
+                //     title.innerHTML = "Sign In";
+                //     // pChange.appendChild(anchor);
+                //     signupBtn.classList.add("disable");
+                //     signinBtn.classList.remove("disable");
+                    
+                // }
+                // else {
+                //     alert("Credentials Does Not Match");
+                // }
+            
+         
+        
+            
+
+        }
+	</script>
 	<!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	 crossorigin="anonymous"></script> -->
 	<script src='jquery.js'></script> 
@@ -202,6 +261,7 @@
 	<script src="fighterController.js"></script>
 	<script src='Model/enemyBullet.js'></script>
 	<script src="Model/enemyExplosion.js"></script>
+	
 	
 
 </body>

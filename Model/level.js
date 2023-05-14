@@ -1,4 +1,4 @@
-var Level = function () {
+var Level1 = function () {
   this.currentLevel = 0;
   this.levelDetails = {
     level1: {
@@ -53,7 +53,7 @@ var Level = function () {
   };
 };
 
-Level.prototype.getCurrentLevel = function () {
+Level1.prototype.getCurrentLevel = function () {
   if (this.currentLevel === 1) {
     return this.levelDetails.level1;
   } else if (this.currentLevel === 2) {

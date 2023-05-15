@@ -22,10 +22,6 @@ function Enemy() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  // for (var j = 0; j <= 400; j++) {
-  //   this.EnemyWarOptions.bullets[this.EnemyWarOptions.bullets.length] =
-  //     new enemyBullet();
-  // }
   this.movement = false;
   // this.rewardPoints = 0;
   this.goUp = true;
@@ -39,8 +35,7 @@ Enemy.prototype.drawEnemyCanvas = function () {
   this.enemyOptions.drawX -= this.speed; //negetive x axis(enemy movement)
   this.enemyOptions.drawX -= this.speed;
   this.EnemydrawAllBullets();
-  // this.checkHitWall();
-  //console.log(7);
+
   this.checkShooting();
   if (this.movement) {
     if (this.goUp) {
@@ -50,15 +45,9 @@ Enemy.prototype.drawEnemyCanvas = function () {
     }
     if (this.enemyOptions.drawY === 0) {
       this.goUp = false;
-    } else if (this.enemyOptions.drawY === 500) {
+    } else if (this.enemyOptions.drawY === 600) {
       this.goUp = true;
     }
-    // if (this.canShoot) {
-    //   //enemy.warOptions.isShooting = true;
-    //   // enemy.checkShooting();
-    //   // enemy.drawAllBullets();
-    // }
-    // console.log(this.enemyOptions.drawY);
   }
 
   canvas.draw(this.ctx, this.enemyOptions);
@@ -66,19 +55,12 @@ Enemy.prototype.drawEnemyCanvas = function () {
 };
 Enemy.prototype.checkShooting = function () {
   console.log(this.EnemyWarOptions.fireBtn, this.EnemyWarOptions.isShooting);
-  // console.log(23);
+
   if (this.EnemyWarOptions.fireBtn && this.EnemyWarOptions.isShooting) {
-    // console.log(22);
     this.EnemyWarOptions.bullets[this.EnemyWarOptions.currentBullet++]?.fire(
       this.enemyOptions.drawX + 100, // draw fire drawX=200+100
       this.enemyOptions.drawY + 30 // draw fire drawY=300+30
     );
-    // if (
-    //   this.EnemyWarOptions.currentBullet >= this.EnemyWarOptions.bullets.length
-    // )
-    // {
-    //   this.EnemyWarOptions.currentBullet = 0; //don't fire
-    // }
   } else if (!this.EnemyWarOptions.fireBtn) {
     this.EnemyWarOptions.isShooting = true;
   }
@@ -107,21 +89,12 @@ Enemy.prototype.escaped = function () {
 };
 
 Enemy.prototype.recycleEnemy = function () {
-  // console.log("enemy drawn");
-  // console.log("Speed: " + this.speed);
   this.enemyOptions.drawX =
     Math.floor(Math.random() * 1000) + window.innerWidth;
   this.drawY = Math.floor(Math.random() * 390);
   canvas.currentTotalEnemies++;
-  // console.log("Current level total: " + canvas.currentTotalEnemies);
-  // console.log("Number of enemies: " + level.getCurrentLevel().numberOfEnemies);
-  // canvas.currentSpawnAmount--;
-  // if(canvas.currentSpawnAmount === 0){
 
-  // }
   if (canvas.currentTotalEnemies > level.getCurrentLevel().numberOfEnemies) {
-    // console.log(canvas.enemies);
-    // console.log("update");
     canvas.updateLevel();
   }
 };

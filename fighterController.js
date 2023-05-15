@@ -8,9 +8,6 @@ function pauseGame() {
   console.log("Entering Pause game method");
   canvas.stopPlaying();
   $("#afterPause").fadeIn(1000);
-
-  //$("#afterPause").removeClass('d-none');
-  //afterPause
 }
 
 function resumeGame() {
@@ -47,9 +44,14 @@ function menu() {
   $("#startGame").fadeIn(1000);
   //play();
 }
+// function HighScore() {
+//   initGameState();
+//   canvas.stopPlaying();
+//   fighterJet.Jetoptions.drawX = 700;
+//   fighterJet.Jetoptions.drawY = 500;
+// }
 
 function play() {
-  //document.getElementById("startGame").style.display = "none";
   $("#startGame").fadeOut(1000);
   $("#pause").removeClass("d-none");
   startGame();

@@ -47,7 +47,7 @@
             opacity: 0.7;
         }
 	
-		#showHighScroreButton{
+		#showHighScoreButton{
             display: block;
             position: absolute;
             left: 20%;
@@ -139,7 +139,7 @@
 						<button id="startButton" class="btn btn-danger menuButton" onclick="play()">Start Game</button>
 					</div>
 					<div class="col-sm-4">
-						<button id="showHighScroreButton" class="btn btn-primary menuButton" onclick="">High Score</button>
+						<button id="showHighScoreButton" class="btn btn-primary menuButton" onclick="HighScore()">High Score</button>
 					</div>
 					<div class="col-sm-4">
 						<button id="showSettingsButton" class="btn btn-success menuButton" onclick="">Settings</button>
@@ -161,7 +161,7 @@
 						<button id="resume" class="btn btn-danger menuButton" onclick="resumeGame()">Resume Game</button>
 					</div>
 					<div class="col-sm-4">
-						<button id="showHighScroreButton" class="btn btn-primary menuButton" onclick="menu()">Go to Menu</button>
+						<button id="menuButton" class="btn btn-primary menuButton" onclick="menu()">Go to Menu</button>
 					</div>
 					<div class="col-sm-4">
 						<button id="restartButton" class="btn btn-success menuButton" onclick="restart()">Restart</button>
@@ -185,14 +185,69 @@
 	<!-- 
 	</div>
 	</div> -->
+	
 	<!-- <script>
-		// Get the name from local storage
-		const name = localStorage.getItem('name');
+		const token = localStorage.getItem("jwt");
+        if (!token) {
+			console.log("object");
+			window.location.href = "./UserComponent/signup-signin.html";
+         }
 		
-		// Update the content of the span element with the name
-		document.getElementById('name').textContent = name;
-	  </script> -->
+		 let logOutBtn = document.getElementById("logOutBtn");
+		 logOutBtn.onclick = function () {
+			console.log("test");
+			const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "http://localhost:3000/v1/auth/logout");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			const refreshToken_value = localStorage.getItem("jwt-refresh");
+			
+			xhttp.send(
+                JSON.stringify({
+                    refreshToken: refreshToken_value,
+                   
+                })
+            );
+			
+			
+			xhttp.onreadystatechange = function () {
+                const objects = JSON.parse(this.responseText);
+                // console.log(objects);
+                if (objects?.tokens?.access) {
+                    
+                     
+                    window.location.href = "./UserComponent/signup-signin.html";
+                    
+                }
+		}
+
+	</script> -->
 	<script>
+		showHighScoreButton.onclick = function () {
+			console.log("object");
+			const xhttp = new XMLHttpRequest();
+			
+			console.log("teststart",xhttp);
+			xhttp.onload = function() {
+				if (this.status === 200) {
+				const scoreValue = JSON.parse(this.responseText);
+				document.getElementById('showHighScoreButton').innerHTML = scoreValue.maximumScore;
+				}
+			};
+			xhttp.open("GET", "http://localhost:3000/v1/data/highscore-preview");
+			xhttp.send();
+			console.log("testend",xhttp);
+		
+		
+		
+		// 	const existingAchievement = await Achievement.findOne({ user });
+		// xhttp.open("GET", "http://localhost:3000/v1/data/achievement");
+        // xhttp.send();		
+    
+        }
+		
+
+	</script>
+	  <script>
 		const token = localStorage.getItem("jwt");
         if (!token) {
 			console.log("object");
@@ -206,35 +261,12 @@
 			console.log("test");
             for ( removeToken of tokensToRemove) {
 			localStorage.removeItem(removeToken);
-			// setAuthenticationToken(false);
-			// clearTimeout(token.timer);
-			// console.log(token.timer);
+			
 		}
 		
 			
 			 window.location.href = "./UserComponent/signup-signin.html";
-			// setAuthenticationToken(false);
-
-
-            
-                // const objects = JSON.parse(this.responseText);
-                //  console.log(objects);
-                // if (objects?.tokens?.access) {
-                //     localStorage.setItem("jwt", objects?.tokens?.access?.token);
-                //     localStorage.setItem("jwt-refresh", objects?.tokens?.refresh?.token);
-                //     //  window.location.href = {signinBtn};
-                //     window.location.href = "../fighter-jet.html";
-                    
-                //     nameField.style.maxHeight = "0";
-                //     title.innerHTML = "Sign In";
-                //     // pChange.appendChild(anchor);
-                //     signupBtn.classList.add("disable");
-                //     signinBtn.classList.remove("disable");
-                    
-                // }
-                // else {
-                //     alert("Credentials Does Not Match");
-                // }
+			 
             
          
         

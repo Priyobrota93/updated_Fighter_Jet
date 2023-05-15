@@ -13,7 +13,7 @@ function Explosion() {
     drawWidth: 100,
     drawHeight: 100,
   };
-  this.speed = 0.5;
+  // this.speed = 0.2;
 }
 
 Explosion.prototype.drawExplosionCanvas = function () {

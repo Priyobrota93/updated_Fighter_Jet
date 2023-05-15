@@ -12,20 +12,18 @@ function enemyBullet() {
       explosion: new Explosion(),
     });
   console.log(this.enemyBulletoptions.srcX);
-  this.speed = 150; //bullet speed
+  this.speed = 180; //bullet speed
   this.visiable = true; //new
 }
 enemyBullet.prototype.drawBulletCanvas = function () {
-  // console.log(5);
   this.enemyBulletoptions.drawX -= this.speed;
   canvas.draw(this.ctx, this.enemyBulletoptions);
-  // this.checkHitJet();
+
   this.recycleBullet();
   // this.fire();
 };
 
 enemyBullet.prototype.recycleBullet = function () {
-  // console.log(4);
   if (
     this.enemyBulletoptions.drawX > canvas.gameWidth ||
     this.enemyBulletoptions.explosion.hasHit
@@ -34,10 +32,11 @@ enemyBullet.prototype.recycleBullet = function () {
 };
 
 enemyBullet.prototype.fire = function (drawX, drawY) {
-  // console.log(1);
   //fire draw when shooting
   this.enemyBulletoptions.drawX = drawX;
   this.enemyBulletoptions.drawY = drawY;
+  // checkhitEnemy();
+  // Jet.this.checkHitEnemy();
 };
 
 // enemyBullet.prototype.checkHitJet = function () {

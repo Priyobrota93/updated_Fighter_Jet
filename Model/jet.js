@@ -62,19 +62,10 @@ function Jet() {
   this.totalLife = 3;
 }
 
-// Jet.prototype.drawJetCanvas = function() {
-// 	canvas.clear( this.ctx );
-// 	this.jetDirection();
-// 	this.checkShooting();
-//   this.drawAllBullets();
-//   this.showLife();
-// 	canvas.draw( this.ctx, this.options );
-// };
-
 Jet.prototype.showLife = function () {
   for (var lifeNumber = 1; lifeNumber <= this.totalLife; lifeNumber++) {
     var id = "life" + lifeNumber;
-    //   console.log(id);
+
     if (lifeNumber > this.life) {
       $("#" + id).attr("src", "images/lifeGone.png");
     } else {
@@ -201,14 +192,7 @@ Jet.prototype.checkHitEnemy = function () {
           .text("Your Score: " + fighterJet.score.score)
           .attr("disabled", "disabled");
 
-        // removeBullet();
         pauseGame();
-
-        // this.life = 0;
-        // break;
-        // if (this.life == 0) {
-        //   console.log("value is 0 here");
-        // }
       }
 
       this.Jetoptions.explosion.Explosionoptions.drawX =
@@ -219,8 +203,7 @@ Jet.prototype.checkHitEnemy = function () {
         this.Jetoptions.explosion.Explosionoptions.height / 3;
       this.Jetoptions.explosion.hasHit = true;
       this.Jetoptions.explosion.drawExplosionCanvas();
-      // $("#collideEnemy").play();
-      // this.recycleBullet();
+
       canvas.enemies[i].recycleEnemy();
     }
   }

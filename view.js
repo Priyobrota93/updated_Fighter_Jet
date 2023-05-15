@@ -42,16 +42,6 @@ var canvas = {
         enemy.movement = true;
       }
       if (Math.random() < 0.5) {
-        // enemy.canShoot = true;
-        // enemy.EnemyWarOptions = {
-        //   bullets: [],
-        //   currentBullet: 0,
-        //   fireBtn: false,
-        //   isShooting: false,
-        // };
-        // for (var i = 0; i <= 50; i++) {
-        //   enemy.bullets[enemy.bullets.length] = new Bullet();
-        // }
       }
       this.enemies.push(enemy);
     }
@@ -61,66 +51,41 @@ var canvas = {
     }
     console.log("Update level");
     $("#level").text("Level- " + level.currentLevel);
-    // const finalLevel = level;
-    // console(finalLevel);
   },
   getCanvasCtx: function (id) {
     return document.getElementById(id).getContext("2d");
   },
-  // getEnemyBulletCanvasCtx: function (id) {
-  //   return document
-  //     .getElementById(id)
-  //     .getContext("2d", {colorSpace: "srgb" });
-  //   // context.fillStyle = "color(display-p3 0.5 0 0)";
-  //   // context.fillRect(0, 0, 10, 10);
-  // },
+
   recursiveDrawAllJets: function () {
     fighterJet.drawJetCanvas();
     this.drawAllEnemies();
     shootInterval++;
-    // if(this.isPlaying){
-    // 	 debugger;
-    //	 requestAnimFrame(canvas.recursiveDrawAllJets());
-    // 	 setInterval(this.recursiveDrawAllJets,10);
-    // }
   },
   recursivedrawAllBullets: function () {
     enemyJet.drawBulletCanvas();
 
-    // if (this.isPlaying) {
-
-    //   debugger;
-    //   requestAnimFrame(canvas.recursiveDrawAllJets());
-    //   setInterval(this.recursiveDrawAllJets, 10);
-    // }
+    // if (this.isPlaying)
   },
   spawnEnemy: function (num) {
     for (var i = 0; i < num; i++) {
       this.enemies[this.enemies.length] = new Enemy();
     }
-    //  console.log("Spawn");
   },
   drawAllEnemies: function () {
     this.clear(this.enemies[0].ctx);
-    // console.log("Spawn");
+
     for (var i = 0; i < this.enemies.length; i++) {
       this.enemies[i].drawEnemyCanvas();
     }
   },
   startPlaying: function () {
-    //this.isPlaying = true;
-    //this.isPlaying = true;
-    //this.isPlaying = true;
-    //this.isPlaying = true;
     var that = this;
     this.stopPlaying();
     drawInterval = setInterval(function () {
       that.recursiveDrawAllJets.call(that);
     }, 10);
-    // this.recursiveDrawAllJets();
   },
   stopPlaying: function () {
-    // this.isPlaying = false;
     clearInterval(drawInterval);
   },
   draw: function (ctx, cusOptions) {

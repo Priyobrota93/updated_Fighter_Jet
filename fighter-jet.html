@@ -30,42 +30,12 @@
 		#pause {
 			position: absolute;
 			z-index: 1;
-			/* top:30px; */
 			left: 0;
 			height: 50px;
 			border-radius: 0;
 
 		}
 
-		/* #startButton{
-            display: block;
-            position: absolute;
-            left: 0%;
-            height: 80px;
-            width: 50%;
-            bottom: 5%;
-            opacity: 0.7;
-        }
-	
-		#showHighScoreButton{
-            display: block;
-            position: absolute;
-            left: 20%;
-            height: 80px;
-            width: 50%;
-            bottom: 5%;
-            opacity: 0.7;
-        }
-
-		 #showLevelButton{ 
-            display: block;
-            position: absolute;
-            left: 40%;
-            height: 80px;
-            width: 50%;
-            bottom: 5%;
-            opacity: 0.7;
-        } */
 	</style>
 	<!-- <script src="jquery-2.2.js"></script> -->
 </head>
@@ -83,23 +53,12 @@
 	<audio id="gameOver">
 		<source src="sound/TunePocket-Game-Over-Sound-3-Preview-[AudioTrimmer.com].mp3">
 	</audio>
-	
-	<!-- <div class="border">
-			<button class="btn btn-success" onclick="pauseGame()" style="position:absolute; top:0; z-index: 1;">Pause</button>
-	</div> -->
-
+ 
 	<div id="layers">
-		<!-- <div class="layer"></div>
-		<div class="layer"></div>
-		<div class="layer"></div>
-		<div class="layer"></div>
-		<div class="layer"></div> -->
 		<div class="  mx-auto vw-100 ">
 			<button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"><i class="fa-sharp fa-solid fa-pause"></i></button>
 			<div class="row  w-100 m-0 bg-light px-5">
 				<button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"><i class="fa-sharp fa-solid fa-pause"></i></button>
-				<!-- <button id="pause" class="btn btn-light w-20 border border-primary d-none" onclick="pauseGame()"><i class="fa-solid fa-pause"></i></button> -->
-				<!-- <button id="pause" class=" ml-auto btn btn-light d-none btn-outline-success" onclick="pauseGame()"><i class="fa-sharp fa-solid fa-pause"></i></button> -->
 				<div class=" d-flex justify-content-center">
 					<h3 class="d-inline">Name:&nbsp</h3>
 					<h3 id="name" class="d-inline"></h3>	
@@ -123,9 +82,7 @@
 		<div class="row p-0 m-0">
 			
 			<div class='wrapCanvas col d-flex justify-content-center w-100'>
-				<!-- <canvas id='canvasBg' width='1600' height='500'></canvas> -->
-				<!-- <img class="hidden" id="goofyPic" src="andyGoofy.gif" alt="Goofy pic of me" />
-						<canvas id="drawing" height="400" width="400"> -->
+				 
 				<canvas id='canvasEnemy' width='1600' height='600'></canvas>
 				<canvas id='canvasJet' width='1600' height='600'></canvas>
 				<canvas id='canvasScore' width='1600' height='600'></canvas>
@@ -152,8 +109,7 @@
 
 
 			<div id="afterPause" style="display:none;">
-				<!-- <img src="https://images.unsplash.com/photo-1519073147904-23e655032ea3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1205&q=80"
-				 style="height:400px;width:600px;opacity: 0.6;"></img> -->
+		
 				<img src="images/paused.jpg" style="height:400px;width:600px;opacity: 0.6;"></img>
 				<div id="menu_buttons" class="row bg-info border mx-0" style="position:absolute;">
 					
@@ -179,23 +135,17 @@
 				</p>
 			</div>
 		</div>
-	<!-- </div> -->
-    
-
-	<!-- 
-	</div>
-	</div> -->
 	
+
 	<!-- <script>
 		const token = localStorage.getItem("jwt");
         if (!token) {
-			console.log("object");
+			
 			window.location.href = "./UserComponent/signup-signin.html";
          }
 		
 		 let logOutBtn = document.getElementById("logOutBtn");
 		 logOutBtn.onclick = function () {
-			console.log("test");
 			const xhttp = new XMLHttpRequest();
             xhttp.open("POST", "http://localhost:3000/v1/auth/logout");
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -211,7 +161,6 @@
 			
 			xhttp.onreadystatechange = function () {
                 const objects = JSON.parse(this.responseText);
-                // console.log(objects);
                 if (objects?.tokens?.access) {
                     
                      
@@ -222,35 +171,29 @@
 
 	</script> -->
 	<script>
-		showHighScoreButton.onclick = function () {
-			console.log("object");
-			const xhttp = new XMLHttpRequest();
-			
-			console.log("teststart",xhttp);
-			xhttp.onload = function() {
-				if (this.status === 200) {
-				const scoreValue = JSON.parse(this.responseText);
-				document.getElementById('showHighScoreButton').innerHTML = scoreValue.maximumScore;
-				}
-			};
-			xhttp.open("GET", "http://localhost:3000/v1/data/highscore-preview");
-			xhttp.send();
-			console.log("testend",xhttp);
-		
-		
-		
-		// 	const existingAchievement = await Achievement.findOne({ user });
-		// xhttp.open("GET", "http://localhost:3000/v1/data/achievement");
-        // xhttp.send();		
-    
-        }
-		
+    showHighScoreButton.onclick = function() {
+        const xhttp = new XMLHttpRequest();
+		const tokens = localStorage.getItem("jwt");
 
-	</script>
+		
+        xhttp.onload = function() {
+            if (this.status === 200) {
+                const highScore = JSON.parse(this.responseText);
+				document.getElementById('showHighScoreButton').innerHTML = Number(highScore.highScore.maximumScore);
+            }
+        };
+		
+        xhttp.open("GET", "http://localhost:3000/v1/data/highscore-preview");
+        xhttp.setRequestHeader("Content-Type", "application/json");
+		xhttp.setRequestHeader("Authorization", "Bearer " + tokens);
+		xhttp.send();
+    };
+</script>
+	 
 	  <script>
 		const token = localStorage.getItem("jwt");
         if (!token) {
-			console.log("object");
+		
 			window.location.href = "./UserComponent/signup-signin.html";
          }
 		
@@ -258,7 +201,7 @@
 		let tokensToRemove = ["jwt", "jwt-refresh"];
 		
 		logOutBtn.onclick = function () {
-			console.log("test");
+			
             for ( removeToken of tokensToRemove) {
 			localStorage.removeItem(removeToken);
 			
@@ -266,11 +209,7 @@
 		
 			
 			 window.location.href = "./UserComponent/signup-signin.html";
-			 
-            
-         
-        
-            
+		  
 
         }
 	</script>

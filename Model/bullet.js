@@ -33,7 +33,6 @@ Bullet.prototype.recycleBullet = function () {
 Bullet.prototype.fire = function (drawX, drawY) {
   this.Bulletoptions.drawX = drawX;
   this.Bulletoptions.drawY = drawY;
-  // fireSound.play();
   document.getElementById("fire").cloneNode(true).play();
 };
 
@@ -46,7 +45,7 @@ Bullet.prototype.checkHitEnemy = function () {
       this.Bulletoptions.drawY < canvas.enemies[i].enemyOptions.drawY + 35
     ) {
       document.getElementById("enemyKill").cloneNode(true).play();
-      // debugger;
+
       fighterJet.score.updateScoreForKill();
       this.Bulletoptions.explosion.Explosionoptions.drawX =
         canvas.enemies[i].enemyOptions.drawX +

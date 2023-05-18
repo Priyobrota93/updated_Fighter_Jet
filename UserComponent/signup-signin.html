@@ -50,11 +50,7 @@
         let signinBtn = document.getElementById("signinBtn");
         let nameField = document.getElementById("nameField");
         let title = document.getElementById("title");
-        // let pChange = document.getElementById("pChange");
-        // var anchor = document.createElement('a');
-        // anchor.setAttribute('href', '#');
-        // anchor.innerHTML = 'Click me';
-        
+    
 
         signupBtn.onclick = function () {
             nameField.style.maxHeight = "60px";
@@ -78,27 +74,17 @@
             );
             xhttp.onreadystatechange = function () {
                  const objects = JSON.parse(this.responseText);
-                 console.log("objects");
+                 
                  if (objects?.tokens?.access) {
-                    console.log("token field");
+                    
                     localStorage.setItem("jwt", objects?.tokens?.access?.token);
                     localStorage.setItem("jwt-refresh", objects?.tokens?.refresh?.token);
                     localStorage.setItem("userData", objects.user.id);
                     localStorage.setItem("Name", objects.user.name);
                     const userData = localStorage.getItem("userData");
-                    console.log(userData);
-                    // const Name = localStorage.getItem(" Name");
-            //         //  window.location.href = {signinBtn};
-                    
+                        
                     window.location.href = "../fighter-jet.html";
-                    
-                    
-            //         nameField.style.maxHeight = "0";
-            //         title.innerHTML = "Sign In";
-            //         // pChange.appendChild(anchor);
-            //         signupBtn.classList.add("disable");
-            //         signinBtn.classList.remove("disable");
-                    
+          
                  }
                 else {
                     alert("Credentials Does Not Match");
@@ -129,17 +115,13 @@
             );
             xhttp.onreadystatechange = function () {
                 const objects = JSON.parse(this.responseText);
-                // console.log(objects);
                 if (objects?.tokens?.access) {
                     localStorage.setItem("jwt", objects?.tokens?.access?.token);
                     localStorage.setItem("jwt-refresh", objects?.tokens?.refresh?.token);
                     localStorage.setItem("userData", objects.user.id);
                     localStorage.setItem("Name", objects.user.name);
                     const userData = localStorage.getItem("userData");
-                    console.log(userData);
-                     const Name = localStorage.getItem("Name");
-                    // console.log(Name);
-                     
+                    const Name = localStorage.getItem("Name");
                     window.location.href = "../fighter-jet.html";
                     
                 }

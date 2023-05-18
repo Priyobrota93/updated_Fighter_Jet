@@ -54,8 +54,6 @@ Enemy.prototype.drawEnemyCanvas = function () {
   this.escaped();
 };
 Enemy.prototype.checkShooting = function () {
-  console.log(this.EnemyWarOptions.fireBtn, this.EnemyWarOptions.isShooting);
-
   if (this.EnemyWarOptions.fireBtn && this.EnemyWarOptions.isShooting) {
     this.EnemyWarOptions.bullets[this.EnemyWarOptions.currentBullet++]?.fire(
       this.enemyOptions.drawX + 100, // draw fire drawX=200+100
@@ -66,14 +64,12 @@ Enemy.prototype.checkShooting = function () {
   }
 };
 Enemy.prototype.EnemydrawAllBullets = function () {
-  console.log(8);
   console.log(this.EnemyWarOptions?.bullets);
   for (var i = 0; i < this.EnemyWarOptions.bullets.length; i++) {
-    // console.log(9);
     console.log(this.EnemyWarOptions.bullets[i]);
     if (this.EnemyWarOptions.bullets[i].enemyBulletoptions.drawX >= 0)
       this.EnemyWarOptions.bullets[i].drawBulletCanvas();
-    // console.log(6);
+
     if (this.EnemyWarOptions.bullets[i].enemyBulletoptions.explosion.hasHit)
       this.EnemyWarOptions.bullets[
         i
@@ -98,51 +94,3 @@ Enemy.prototype.recycleEnemy = function () {
     canvas.updateLevel();
   }
 };
-
-//Enemy.prototype.checkShooting = Jet.prototype.checkShooting;
-//Enemy.prototype.drawAllBullets = Jet.prototype.drawAllBullets;
-
-// Enemy.prototype.checkHitWall = function () {
-//   console.log("Screen size: " + window.innerWidth);
-//   if (this.enemyOptions.drawX + this.enemyOptions.width >= window.innerWidth)
-//     this.enemyOptions.drawX = window.innerWidth - this.enemyOptions.width;
-//   if (this.enemyOptions.drawX <= 0) this.enemyOptions.drawX = 0;
-//   if (this.enemyOptions.drawY <= 0) this.enemyOptions.drawY = 0;
-//   if (
-//     this.enemyOptions.drawY + this.enemyOptions.height >=
-//     window.innerHeight - 250
-//   )
-//     this.enemyOptions.drawY =
-//       window.innerHeight - 250 - this.enemyOptions.height;
-// };
-
-// Jet.prototype.checkHitJet = function () {
-//   for (var i = 0; i < canvas.enemies.length; i++) {
-//     if (detectCollision(this, canvas.enemies[i])) {
-//       document.getElementById("collideEnemy").cloneNode(true).play();
-//       // debugger;
-//       this.life--;
-//       this.showLife();
-//       // debugger;
-//       if (this.life <= 0) {
-//         document.getElementById("gameOver").cloneNode(true).play();
-//         $("#resume")
-//           .text("Your Score: " + fighterJet.score.score)
-//           .attr("disabled", "disabled");
-//         removeBullet();
-//         pauseGame();
-//       }
-//       this.options.explosion.options.drawX =
-//         canvas.enemies[i].enemyOptions.drawX +
-//         this.options.explosion.options.width / 2;
-//       this.options.explosion.options.drawY =
-//         canvas.enemies[i].enemyOptions.drawY -
-//         this.options.explosion.options.height / 3;
-//       this.options.explosion.hasHit = true;
-//       this.options.explosion.drawExplosionCanvas();
-//       // $('#collideEnemy').play();
-//       //this.recycleBullet();
-//       canvas.enemies[i].recycleEnemy();
-//     }
-//   }
-// };

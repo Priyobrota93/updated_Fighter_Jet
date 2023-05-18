@@ -15,7 +15,6 @@ var canvas = {
   gameScore: {},
   currentTotalEnemies: 0,
   init: function () {
-    // this.drawbackground();
     this.updateLevel();
     this.spawnEnemy(this.spawnAmount);
     this.startPlaying();
@@ -23,9 +22,6 @@ var canvas = {
       this.stopPlaying();
       isFirstLoaded = 0;
     }
-
-    //this.gameScore = new Score();
-    //this.gameScore.drawScoreCanvas();
 
     document.addEventListener("keydown", this.utilityOfKeydown, false);
     document.addEventListener("keyup", this.utilityOfKeyup, false);
@@ -49,7 +45,6 @@ var canvas = {
     for (let index = 0; index < this.enemies.length; index++) {
       this.enemies[index].speed = level.getCurrentLevel().speed;
     }
-    console.log("Update level");
     $("#level").text("Level- " + level.currentLevel);
   },
   getCanvasCtx: function (id) {
@@ -63,8 +58,6 @@ var canvas = {
   },
   recursivedrawAllBullets: function () {
     enemyJet.drawBulletCanvas();
-
-    // if (this.isPlaying)
   },
   spawnEnemy: function (num) {
     for (var i = 0; i < num; i++) {

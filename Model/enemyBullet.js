@@ -11,16 +11,13 @@ function enemyBullet() {
       drawHeight: 4, //bullet size
       explosion: new Explosion(),
     });
-  console.log(this.enemyBulletoptions.srcX);
   this.speed = 180; //bullet speed
   this.visiable = true; //new
 }
 enemyBullet.prototype.drawBulletCanvas = function () {
   this.enemyBulletoptions.drawX -= this.speed;
   canvas.draw(this.ctx, this.enemyBulletoptions);
-
   this.recycleBullet();
-  // this.fire();
 };
 
 enemyBullet.prototype.recycleBullet = function () {
@@ -62,4 +59,4 @@ enemyBullet.prototype.fire = function (drawX, drawY) {
 //   }
 // };
 
-//Bullet part end
+//enemyBullet part end

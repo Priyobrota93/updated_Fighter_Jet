@@ -50,14 +50,14 @@ function Jet() {
     isShooting: false,
   };
 
-  for (var i = 0; i <= 50; i++) {
+  for (var i = 0; i <= 20; i++) {
     this.jetWarOptions.bullets[this.jetWarOptions.bullets.length] =
       new Bullet();
   }
 
   this.score = new Score();
   this.score.update();
-  this.speed = 15;
+  this.speed = 50;
   this.life = 3;
   this.totalLife = 3;
 }

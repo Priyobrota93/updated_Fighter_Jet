@@ -13,7 +13,7 @@ function Enemy() {
     fireBtn: true,
     isShooting: true,
   };
-  for (var j = 0; j <= getRandomNumber(400, 999); j++) {
+  for (var j = 0; j <= getRandomNumber(500, 9999); j++) {
     this.EnemyWarOptions.bullets[this.EnemyWarOptions.bullets.length] =
       new enemyBullet();
   }
@@ -22,14 +22,14 @@ function Enemy() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  this.movement = false;
+  this.movement = true;
   // this.rewardPoints = 0;
   this.goUp = true;
   this.speed = 10;
   this.canShoot = false;
   this.warOptions = [];
 }
-Enemy.prototype.verticalMovement = 0.5;
+Enemy.prototype.verticalMovement = 2;
 
 Enemy.prototype.drawEnemyCanvas = function () {
   this.enemyOptions.drawX -= this.speed; //negetive x axis(enemy movement)

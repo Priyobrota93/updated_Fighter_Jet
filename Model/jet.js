@@ -13,7 +13,6 @@ function detectCollision(jet, enemy) {
 
   if (
     rightOfJet >= leftSideOfEnemy &&
-    rightOfJet <= rightOfJet &&
     leftOfJet <= rightSideOfEnemy &&
     bottomOfJet >= topOfEnemy &&
     topOfJet <= bottomOfEnemy

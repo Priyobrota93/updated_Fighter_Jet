@@ -35,28 +35,3 @@ enemyBullet.prototype.fire = function (drawX, drawY) {
   // checkhitEnemy();
   // Jet.this.checkHitEnemy();
 };
-
-// enemyBullet.prototype.checkHitJet = function () {
-//   for (var i = 0; i < canvas.Jet.length; i++) {
-//     if (
-//       this.enemyBulletoptions.drawX > canvas.Jet[i].Jet.options.drawX &&
-//       this.enemyBulletoptions.drawX < canvas.Jet[i].Jet.options.drawX + 100 &&
-//       this.enemyBulletoptions.drawY > canvas.Jet[i].Jet.options.drawY + 10 &&
-//       this.enemyBulletoptions.drawY < canvas.Jet[i].Jet.options.drawY + 30
-//     ) {
-//       // debugger;
-//       //fighterJet.score.updateScoreForKill(); //new [test kill]
-//       this.enemyBulletoptions.explosion.Explosionoptions.drawX =
-//         canvas.Jet[i].Jet.options.drawX +
-//         this.enemyBulletoptions.explosion.Explosionoptions.width / 2;
-//       this.enemyBulletoptions.explosion.Explosionoptions.drawY =
-//         canvas.Jet[i].Jet.options.drawY -
-//         this.enemyBulletoptions.explosion.Explosionoptions.height / 3;
-//       this.enemyBulletoptions.explosion.hasHit = true;
-//       // this.recycleBullet();
-//       // canvas.Jet[i].recycleEnemy();
-//     }
-//   }
-// };
-
-//enemyBullet part end

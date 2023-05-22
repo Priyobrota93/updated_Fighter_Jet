@@ -64,6 +64,8 @@
             var name_value = document.getElementById("name").value;
             var email_value = document.getElementById("email").value;
             var pass_value = document.getElementById("pass").value;
+            
+            if(name_value && email_value && pass_value){
             xhttp.send(
                 JSON.stringify({
                 name:  name_value,
@@ -72,6 +74,7 @@
                 })
                
             );
+            }
             xhttp.onreadystatechange = function () {
                  const objects = JSON.parse(this.responseText);
                  
@@ -86,9 +89,13 @@
                     window.location.href = "../fighter-jet.html";
           
                  }
-                else {
-                    alert("Credentials Does Not Match");
-                }
+                 if (xhttp.readyState === XMLHttpRequest.DONE) {
+         
+         if (xhttp.status != 201) {
+            alert(objects?.message);      
+        }
+    }
+         
              }
          
         
@@ -107,12 +114,15 @@
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             var email_value = document.getElementById("email").value;
             var pass_value = document.getElementById("pass").value;
+           
+            if(email_value && pass_value){
             xhttp.send(
                 JSON.stringify({
                     email: email_value,
                     password: pass_value,
                 })
             );
+            }
             xhttp.onreadystatechange = function () {
                 const objects = JSON.parse(this.responseText);
                 if (objects?.tokens?.access) {
@@ -125,9 +135,12 @@
                     window.location.href = "../fighter-jet.html";
                     
                 }
-                else {
-                    alert("Credentials Does Not Match")
-                }
+                if (xhttp.readyState === XMLHttpRequest.DONE) {
+        
+         if (xhttp.status != 200) {
+            alert(objects?.message);      
+        }
+    }
             }
         
 

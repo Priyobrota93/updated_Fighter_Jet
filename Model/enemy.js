@@ -1,5 +1,8 @@
 function Enemy() {
   this.ctx = canvas.getCanvasCtx("canvasEnemy");
+
+  this.enemyBullet = new enemyBullet();
+
   this.enemyOptions = {
     srcY: 540,
     drawX: Math.floor(Math.random() * 1150) + window.innerWidth,
@@ -37,6 +40,7 @@ Enemy.prototype.drawEnemyCanvas = function () {
   this.EnemydrawAllBullets();
 
   this.checkShooting();
+  this.checkHitJet();
   if (this.movement) {
     if (this.goUp) {
       this.enemyOptions.drawY -= this.verticalMovement;
@@ -92,5 +96,66 @@ Enemy.prototype.recycleEnemy = function () {
 
   if (canvas.currentTotalEnemies > level.getCurrentLevel().numberOfEnemies) {
     canvas.updateLevel();
+  }
+};
+
+Enemy.prototype.checkHitJet = function () {
+  for (var i = 0; i < canvas.jet.length; i++) {
+    if (
+      this.enemyBullet.enemyBulletoptions.drawX <
+        canvas.jet[i].jetOptions.drawX &&
+      this.enemyBullet.enemyBulletoptions.drawX <
+        canvas.jet[i].jetOptions.drawX + 95 &&
+      this.enemyBullet.enemyBulletoptions.drawY <
+        canvas.jet[i].jetOptionss.drawY + 10 &&
+      this.enemyBullet.enemyBulletoptions.drawY <
+        canvas.jet[i].jetOptions.drawY + 35
+    ) {
+      document.getElementById("jetKill").cloneNode(true).play();
+
+      this.life--;
+
+      this.showLife();
+
+      if (this.life <= 0) {
+        document.getElementById("gameOver").cloneNode(true).play();
+
+        const finalScore = fighterJet.score.score;
+
+        const finalLevel = level.currentLevel;
+
+        const xhttp = new XMLHttpRequest();
+        const tokens = localStorage.getItem("jwt");
+
+        xhttp.open("POST", "http://localhost:3000/v1/data/achievement", true);
+        xhttp.setRequestHeader("Authorization", "Bearer " + tokens);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+
+        xhttp.send(
+          JSON.stringify({
+            user: localStorage.getItem("userData"),
+            name: localStorage.getItem("Name"),
+            maximumScore: finalScore,
+            level: finalLevel,
+          })
+        );
+
+        $("#resume")
+          .text("Your Score: " + fighterJet.score.score)
+          .attr("disabled", "disabled");
+
+        pauseGame();
+      }
+
+      this.enemyOptions.explosion.Explosionoptions.drawX =
+        canvas.enemies[i].Jetoptions.drawX +
+        this.enemyOptions.explosion.Explosionoptions.width / 2;
+      this.enemyOptions.explosion.Explosionoptions.drawY =
+        canvas.enemies[i].Jetoptions.drawY -
+        this.enemyOptions.explosion.Explosionoptions.height / 3;
+      this.enemyOptions.explosion.hasHit = true;
+      this.enemyOptions.explosion.drawExplosionCanvas();
+      this.recycleBullet();
+    }
   }
 };

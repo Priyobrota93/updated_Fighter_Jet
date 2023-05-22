@@ -56,9 +56,9 @@
  
 	<div id="layers">
 		<div class="  mx-auto vw-100 ">
-			<button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"><i class="fa-sharp fa-solid fa-pause"></i></button>
+			<button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"> || </i></button>
 			<div class="row  w-100 m-0 bg-light px-5">
-				<button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"><i class="fa-sharp fa-solid fa-pause"></i></button>
+				<!-- <button id="pause" class="btn btn-light border border-primary d-none" onclick="pauseGame()"><i class="fa-sharp fa-solid fa-pause"></i></button> -->
 				<div class=" d-flex justify-content-center">
 					<h3 class="d-inline">Name:&nbsp</h3>
 					<h3 id="name" class="d-inline"></h3>	
@@ -136,7 +136,7 @@
 			</div>
 		</div>
 	
-
+    </div>
 	<!-- <script>
 		const token = localStorage.getItem("jwt");
         if (!token) {
@@ -177,7 +177,7 @@
 
 		
         xhttp.onload = function() {
-            if (this.status === 200) {
+            if (this.status === 200 ||this.status === 201) {
                 const highScore = JSON.parse(this.responseText);
 				document.getElementById('showHighScoreButton').innerHTML = Number(highScore.highScore.maximumScore);
             }

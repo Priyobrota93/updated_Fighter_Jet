@@ -1,5 +1,5 @@
 const FRAME_WIDTH = 1500;
-const FRAME_HEIGHT = 450;
+const FRAME_HEIGHT = 650;
 var isFirstLoaded = 1;
 var drawInterval;
 var requestAnimFrame =
@@ -10,6 +10,7 @@ var canvas = {
   gameHeight: window.innerHeight,
   isPlaying: false,
   enemies: [],
+  jet: [],
   spawnAmount: 7,
   currentSpawnAmount: 7,
   gameScore: {},
